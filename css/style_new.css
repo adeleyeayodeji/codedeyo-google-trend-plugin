@@ -1,12 +1,138 @@
-	.selectpart{
-		margin-bottom: 5px;
-	}
-	
-	.selectparttwo{
-			background: #0073aa !important;
-			color: white !important;
-			padding: 5px !important;
-			outline: none !important;
-			border: none !important;
-		}
-	
+.selectpart {
+  margin-bottom: 5px;
+}
+
+.selectparttwo {
+  background: #0073aa !important;
+  color: white !important;
+  padding: 5px !important;
+  outline: none !important;
+  border: none !important;
+}
+.dropbtncode {
+  background-color: white;
+  color: black;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0px;
+  box-shadow: 0px 0px 2px 5px white;
+}
+
+.dropbtncode:hover,
+.dropbtncode:focus {
+  background-color: #23282d;
+  box-shadow: -1px 1px 5px 5px #d4d4d5;
+  color: white;
+}
+
+.dropdowncode {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-contentcode {
+  display: none;
+  position: absolute;
+  width: 172px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-contentcode a {
+  color: black;
+  padding-bottom: 23px;
+  text-decoration: none;
+  display: block;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.dropdowncode a:hover {
+  background-color: #ddd;
+}
+
+.showcode {
+  display: block;
+}
+.countryn {
+  float: right;
+  margin-top: -14px;
+}
+.flagn {
+  float: left;
+}
+
+.selectpart {
+  width: 30%;
+}
+.copyrightcode {
+  float: right;
+  font-size: 12px;
+  color: white;
+  font-family: calibri;
+}
+
+.copyrightcode a {
+  color: yellow !important;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .deyotitle {
+    float: right;
+    width: 65%;
+    margin-top: -47px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .deyotitle {
+    float: right;
+    width: 45%;
+    font-size: larger;
+    margin-top: -30px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .deyotitle {
+    float: right;
+    width: 34%;
+    font-size: large;
+    margin-top: -43px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .deyotitle {
+    float: right;
+    width: 42%;
+    font-size: large;
+    margin-top: -30px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .deyotitle {
+    float: right;
+    width: 30%;
+    font-size: larger;
+    margin-top: -37px;
+  }
+}
+
+.flagn {
+  height: 20px !important;
+  width: 20px !important;
+  object-fit: contain;
+}
+.holder2 #myDropdowncode a p {
+  margin: 1px !important;
+  /* margin-top: 10px !important; */
+}

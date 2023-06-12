@@ -1,12 +1,12 @@
-=== CodeDeyo Google Trends for bloggers ===
-Contributors: Adeleye Ayodeji
-Tags: google trends, trending search, latest search, google search, google seo, trends for bloggers, bloggers post, blogger, bloggers, trends, searching, updates search
+=== Google Trends for WP ===
+Contributors: Adeleye Ayodeji, biggidroid
+Tags: google trends, trending search, google search, google trending, google tre, google t, google, google search, google sear, google result, google results, latest search, google search, google seo, trends for bloggers, bloggers post, blogger, bloggers, trends, searching, updates search
 Author URI: https://adeleyeayodeji.com/
 Author: Adeleye Ayodeji
 Requires at least: 3.6.0
-Requires PHP: 5.6
-Tested up to: 5.2
-Stable tag: 1.52
+Requires PHP: 5.7
+Tested up to: 6.2
+Stable tag: 2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,19 @@ none
 Yes
 
 == Changelog ==
+
+= 2.4 =
+Updated Readme
+
+= 2.2 =
+Udated UI Design
+Added more countries
+Fix some bugs
+
+= 2.0 =
+Udated UI Design
+Added more countries
+Fix some bugs
 
 = 1.52 =
 Fix some bugs
