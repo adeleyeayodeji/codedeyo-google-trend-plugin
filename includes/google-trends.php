@@ -30,16 +30,18 @@ class CodedeyoGoogleTrends
     public function load_custom_wp_admin_style()
     {
         //Loading my personal styles
-        wp_enqueue_style('style', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'css/style.css');
-        wp_enqueue_style('style-new', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'css/style_new.css');
+        wp_enqueue_style('style-frontend', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.css', [], CODEDEYO_TRENDS_PLGUN_VERSION);
         //Loading google trends result js
-        wp_enqueue_script('google-trends-js', 'https://ssl.gstatic.com/trends_nrtr/2431_RC04/embed_loader.js');
-        wp_enqueue_script('google-trends-js-2', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.js', array('wp-element'));
+        wp_enqueue_script('google-trends-js', 'https://ssl.gstatic.com/trends_nrtr/2431_RC04/embed_loader.js', [], null, true);
+        //load chart js
+        wp_enqueue_script('google-trends-js-chart', 'https://ssl.gstatic.com/trends_nrtr/3349_RC01/embed_loader.js', [], null, true);
+        wp_enqueue_script('google-trends-js-2', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.js', array('wp-element'), CODEDEYO_TRENDS_PLGUN_VERSION);
         //localize script
         wp_localize_script('google-trends-js-2', 'codedeyoGoogleTrends', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('codedeyo-google-trends-nonce'),
-            'plugin_dir_url' => plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE)
+            'plugin_dir_url' => plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE),
+            'frontend_css_url' => plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.css'
         ));
     }
 
@@ -51,7 +53,7 @@ class CodedeyoGoogleTrends
         //add add_meta_box
         add_meta_box(
             $this->slug,
-            'Google Trends WP',
+            'Google Trends for WP',
             [$this, 'metabox_render'],
             null,
             'normal',

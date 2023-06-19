@@ -16,6 +16,8 @@ defined('ABSPATH') || exit;
 if (!defined('CODEDEYO_TRENDS_PLGUN_FILE')) {
     define('CODEDEYO_TRENDS_PLGUN_FILE', __FILE__);
 }
+//define version
+define('CODEDEYO_TRENDS_PLGUN_VERSION', time());
 
 //require once included file
 require_once plugin_dir_path(CODEDEYO_TRENDS_PLGUN_FILE) . '/includes/google-trends.php';

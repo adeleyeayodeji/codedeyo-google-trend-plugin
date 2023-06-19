@@ -12,11 +12,7 @@ registerBlockType("codedeyogoogletrends/meta-block", {
     console.log("I dey here");
     return (
       <div {...blockProps}>
-        <TextControl
-          label="Meta Block Field"
-          value={metaFieldValue}
-          onChange={updateMetaValue}
-        />
+        <p>This widget is not available yet, please check back later</p>
       </div>
     );
   },
