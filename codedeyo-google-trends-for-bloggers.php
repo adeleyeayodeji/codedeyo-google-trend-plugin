@@ -2,7 +2,7 @@
 /*
 Plugin Name: Google Trends for WP
 Plugin URI: https://wordpress.org/plugins/codedeyo-google-trends-for-bloggers/
-Version: 2.4
+Version: 3.0
 Description: A cool plugin that shows trending searches below your editor.
 Author: Adeleye Ayodeji
 Author URI: http://adeleyeayodeji.com/
