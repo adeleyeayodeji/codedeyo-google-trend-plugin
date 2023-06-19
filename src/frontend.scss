@@ -21,6 +21,46 @@
       #fdfcfb !important;
     padding: 20px 5px !important;
 
+    &--entry {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+
+      //second div in the entry
+      & > div:nth-child(2) {
+        display: block !important;
+
+        a {
+          display: -webkit-flex !important;
+          display: -moz-flex !important;
+          display: -ms-flexbox !important;
+          display: -ms-flex !important;
+          display: -webkit-box !important;
+          display: -moz-box !important;
+          display: flex !important;
+          -webkit-box-align: center !important;
+          -webkit-align-items: center !important;
+          -moz-box-align: center !important;
+          -ms-flex-align: center !important;
+          align-items: center !important;
+          border: 2px solid #ffffff !important;
+          -webkit-border-radius: 15px !important;
+          -moz-border-radius: 15px !important;
+          border-radius: 15px !important;
+          color: black !important;
+          font-size: 14px !important;
+          font-weight: 350 !important;
+          gap: 10px !important;
+          height: 30px !important;
+          line-height: 20px !important;
+          padding-left: 16px !important;
+          padding-right: 24px !important;
+          text-decoration: none !important;
+          margin-top: 0px !important;
+        }
+      }
+    }
+
     &--flex {
       display: flex !important;
     }
@@ -97,11 +137,25 @@
 
 /** Responsive **/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .googleTrends-codedeyo-containers {
     &--trends-header {
       &--flex {
         display: block !important;
+      }
+
+      &--entry {
+        display: block !important;
+
+        //second div in the entry
+        & > div:nth-child(2) {
+          display: flex !important;
+          justify-content: center !important;
+          a {
+            margin-top: 10px !important;
+            width: fit-content !important;
+          }
+        }
       }
 
       &--left {

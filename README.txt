@@ -6,7 +6,7 @@ Author: Adeleye Ayodeji
 Requires at least: 3.6.0
 Requires PHP: 5.7
 Tested up to: 6.2
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,8 +16,13 @@ Deliver daily trending searches from google below your editor.
 
 = Deliver daily trending searches from google below your editor. =
 
+Stay up-to-date with the latest trends! The Google Trends for WP plugin delivers daily trending searches from Google directly below your editor. Keep your finger on the pulse of what’s popular and never miss a beat with our easy-to-use plugin.
+
+= Features =
 * Shows trending searches from google.
 * Shows daily trending searches.
+* Shows trending searches from google in your country.
+* Allows you to search for trending searches from google in any country.
 
 == Installation ==
 
@@ -34,6 +39,9 @@ none
 Yes
 
 == Changelog ==
+
+= 3.1 =
+Updated Readme
 
 = 3.0 =
 Added support for Gutenberg Block Editor

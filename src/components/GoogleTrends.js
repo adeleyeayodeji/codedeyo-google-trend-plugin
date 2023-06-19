@@ -64,21 +64,25 @@ export default class GoogleTrends extends React.Component {
       if (this.state.isOnline) {
         //load the google data
         this.initIframe();
-        //show gutenberg toast
-        wp.data
-          .dispatch("core/notices")
-          .createNotice("success", "Google Trends: You are back online!", {
-            type: "snackbar",
-            isDismissible: true
-          });
+        try {
+          //show gutenberg toast
+          wp.data
+            .dispatch("core/notices")
+            .createNotice("success", "Google Trends: You are back online!", {
+              type: "snackbar",
+              isDismissible: true
+            });
+        } catch (error) {}
       } else {
-        //show gutenberg toast
-        wp.data
-          .dispatch("core/notices")
-          .createNotice("error", "Google Trends: You are offline!", {
-            type: "snackbar",
-            isDismissible: true
-          });
+        try {
+          //show gutenberg toast
+          wp.data
+            .dispatch("core/notices")
+            .createNotice("error", "Google Trends: You are offline!", {
+              type: "snackbar",
+              isDismissible: true
+            });
+        } catch (error) {}
       }
     }
   }
@@ -158,17 +162,20 @@ export default class GoogleTrends extends React.Component {
     } catch (error) {
       //get error message
       var errorMessage = error.message;
-      //show gutenberg toast
-      wp.data
-        .dispatch("core/notices")
-        .createNotice(
-          "error",
-          "Google Trends: Something went wrong. Please try again!",
-          {
-            type: "snackbar",
-            isDismissible: true
-          }
-        );
+      try {
+        //show gutenberg toast
+        wp.data
+          .dispatch("core/notices")
+          .createNotice(
+            "error",
+            "Google Trends: Something went wrong. Please try again!",
+            {
+              type: "snackbar",
+              isDismissible: true
+            }
+          );
+      } catch (error) {}
+
       //update the error state
       this.setState({ error: errorMessage });
     }
@@ -216,17 +223,21 @@ export default class GoogleTrends extends React.Component {
     } catch (error) {
       //get error message
       var errorMessage = error.message;
-      //show gutenberg toast
-      wp.data
-        .dispatch("core/notices")
-        .createNotice(
-          "error",
-          "Google Trends: Something went wrong. Please try again!",
-          {
-            type: "snackbar",
-            isDismissible: true
-          }
-        );
+      try {
+        //show gutenberg toast
+        wp.data
+          .dispatch("core/notices")
+          .createNotice(
+            "error",
+            "Google Trends: Something went wrong. Please try again!",
+            {
+              type: "snackbar",
+              isDismissible: true
+            }
+          );
+      } catch (error) {
+        //do nothing, gutenberg not found
+      }
       //update the error state
       this.setState({ error: errorMessage });
     }
@@ -250,6 +261,15 @@ export default class GoogleTrends extends React.Component {
     closeBtn.style.display = "none";
     //update the state
     this.setState({ searchKeyword: "" });
+    //load the google data
+    this.initIframe(this.state.country);
+  };
+
+  /**
+   * Reload the google trends chart
+   * @returns {void}
+   */
+  reload = () => {
     //load the google data
     this.initIframe(this.state.country);
   };
@@ -282,6 +302,7 @@ export default class GoogleTrends extends React.Component {
                   countryData={this.state}
                   updateCountry={this.updateCountry}
                   clearSearchKeyword={this.clearSearchKeyword}
+                  reload={this.reload}
                 />
                 <GoogleTrendsWidgetContainer />
               </>
