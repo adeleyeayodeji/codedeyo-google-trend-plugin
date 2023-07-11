@@ -7,5 +7,8 @@ import "./frontend.scss";
 document.addEventListener("DOMContentLoaded", () => {
   //load the google data
   const googleTrendsDiv = document.getElementById("google-trends-wp-container");
-  ReactDOM.render(<GoogleTrends />, googleTrendsDiv);
+  //check if element exist
+  if (googleTrendsDiv) {
+    ReactDOM.render(<GoogleTrends />, googleTrendsDiv);
+  }
 });
