@@ -12,6 +12,16 @@
     }
   }
 
+  &--trends--settings {
+    background: linear-gradient(0deg, rgb(11 87 208 / 1%), rgb(11 87 208 / 16%)),
+      #fdfcfb00 !important;
+    padding: 14px;
+    text-align: center !important;
+  }
+
+  &--trends-header--select {
+  }
+
   &--trends-header {
     background: linear-gradient(
         0deg,
@@ -28,7 +38,7 @@
 
       //second div in the entry
       & > div:nth-child(2) {
-        display: block !important;
+        display: flex !important;
 
         a {
           display: -webkit-flex !important;
@@ -57,6 +67,14 @@
           padding-right: 24px !important;
           text-decoration: none !important;
           margin-top: 0px !important;
+        }
+
+        //second a
+        & > a:nth-child(2) {
+          width: 5px !important;
+          margin-left: 10px !important;
+          font-size: 20px !important;
+          margin-right: 5px !important;
         }
       }
     }
@@ -160,6 +178,13 @@
           a {
             margin-top: 10px !important;
             width: fit-content !important;
+          }
+          //second a
+          & > a:nth-child(2) {
+            width: 5px !important;
+            margin-left: 10px !important;
+            font-size: 20px !important;
+            margin-right: 5px !important;
           }
         }
       }

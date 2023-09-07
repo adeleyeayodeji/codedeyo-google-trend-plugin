@@ -16,7 +16,7 @@ class TrendsHeader extends Component {
 
   render() {
     //get the countries
-    const { countries } = this.props.countryData;
+    const { countries, country } = this.props.countryData;
     return (
       <div className="googleTrends-codedeyo-containers--trends-header">
         <div className="googleTrends-codedeyo-containers--trends-header--entry">
@@ -42,9 +42,12 @@ class TrendsHeader extends Component {
             </div>
             <div className="googleTrends-codedeyo-containers--trends-header--right">
               <select name="country" onChange={this.onChange}>
-                {countries.map((country, index) => (
-                  <option key={index} value={country.code}>
-                    {country.name}
+                {countries.map((countryd, index) => (
+                  <option
+                    key={index}
+                    value={countryd.code}
+                    selected={countryd.code === country}>
+                    {countryd.name}
                   </option>
                 ))}
               </select>
@@ -56,6 +59,9 @@ class TrendsHeader extends Component {
               className="googleTrends-codedeyo-containers--trends-header--reload"
               onClick={this.props.reload}>
               &#8635; Reload Content
+            </a>
+            <a href="javascript:;" onClick={this.props.showSettings}>
+              &#9881;
             </a>
           </div>
         </div>

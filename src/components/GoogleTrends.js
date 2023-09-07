@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleTrendsWidgetContainer } from "./GoogleTrendsWidgetContainer";
 import TrendsHeader from "./TrendsHeader";
+import { Modal } from "@wordpress/components";
 
 /**
  * Class component for the Google Trends widget.
@@ -15,7 +16,7 @@ export default class GoogleTrends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      country: "NG",
+      country: codedeyoGoogleTrends.default_country,
       //countries
       countries: [
         { name: "Nigeria", code: "NG" },
@@ -27,7 +28,9 @@ export default class GoogleTrends extends React.Component {
       ],
       isOnline: navigator.onLine,
       error: null,
-      searchKeyword: ""
+      searchKeyword: "",
+      showModal: false,
+      closeModal: false
     };
   }
 
@@ -275,11 +278,74 @@ export default class GoogleTrends extends React.Component {
   };
 
   /**
+   * Settings Page
+   * @returns {void}
+   */
+  showSettings = () => {
+    //show alert dialog
+    this.setState({ showModal: true });
+  };
+
+  /**
+   * Close the modal
+   * @returns {void}
+   */
+  closeModal = () => {
+    this.setState({ showModal: false });
+  };
+
+  /**
+   * Update the default country
+   * @param {object} event - The event.
+   * @returns {void}
+   */
+  updateDefaultCountry = (event) => {
+    //get the name and value
+    const { value } = event.target;
+    //update the country save to database as option
+    this.handleApiRequestForDefaultCountry(value);
+    //show gutenberg toast
+    try {
+      wp.data
+        .dispatch("core/notices")
+        .createNotice("success", "Google Trends: Default Country updated!", {
+          type: "snackbar",
+          isDismissible: true
+        });
+    } catch (error) {}
+    //update the state
+    this.setState({ country: value });
+    //update the iframe state
+    this.reload();
+  };
+
+  /**
+   * Handle API Request for Default Country
+   * @param {string} country
+   * @returns {void}
+   */
+  handleApiRequestForDefaultCountry(country) {
+    // Save the selected country to WordPress options
+    jQuery.ajax({
+      url: codedeyoGoogleTrends.ajax_url,
+      type: "POST",
+      data: {
+        action: "update_default_country_codedeyo_googletrend",
+        country: country,
+        nonce: codedeyoGoogleTrends.nonce
+      },
+      success: function (response) {
+        console.log("Default country saved to database:", response);
+      }
+    });
+  }
+
+  /**
    * Render the Google Trends widget.
    * @returns {object} - The Google Trends widget.
    */
   render() {
-    const { isOnline, error } = this.state;
+    const { isOnline, error, showModal, country } = this.state;
     return (
       <div className="googleTrends-codedeyo-containers">
         {isOnline ? (
@@ -298,11 +364,45 @@ export default class GoogleTrends extends React.Component {
               </div>
             ) : (
               <>
+                {showModal && (
+                  <Modal
+                    title="Google Trends Settings"
+                    onRequestClose={this.closeModal}>
+                    <div className="googleTrends-codedeyo-containers--trends--settings">
+                      <p>
+                        Set the default country for the Google Trends widget.
+                      </p>
+                      <p>
+                        <select
+                          onChange={this.updateDefaultCountry}
+                          className="googleTrends-codedeyo-containers--trends-header--select">
+                          {this.state.countries.map((countryd, index) => (
+                            <option
+                              key={index}
+                              value={countryd.code}
+                              selected={countryd.code === country}>
+                              {countryd.name}
+                            </option>
+                          ))}
+                        </select>
+                      </p>
+                      <p>
+                        <a
+                          href="https://adeleyeayodeji.com"
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          Contact Us, if you need help
+                        </a>
+                      </p>
+                    </div>
+                  </Modal>
+                )}
                 <TrendsHeader
                   countryData={this.state}
                   updateCountry={this.updateCountry}
                   clearSearchKeyword={this.clearSearchKeyword}
                   reload={this.reload}
+                  showSettings={this.showSettings}
                 />
                 <GoogleTrendsWidgetContainer />
               </>

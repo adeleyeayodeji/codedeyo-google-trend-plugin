@@ -7,6 +7,12 @@ if (!defined('ABSPATH')) {
     exit('ABSPATH must be set before running');
 }
 
+/**
+ * CodedeyoGoogleTrends
+ * @return void
+ * @since 1.0.0
+ * @author Adeleye Ayodeji adeleyeayodeji.com
+ */
 class CodedeyoGoogleTrends
 {
     private $slug;
@@ -22,10 +28,24 @@ class CodedeyoGoogleTrends
         add_action('enqueue_block_editor_assets', array($this, 'enqueue_block_editor_assets'));
         //add_meta_boxes
         add_action('add_meta_boxes', [$this, 'register_meta_boxes']);
+        //add ajax update_default_country
+        add_action('wp_ajax_update_default_country_codedeyo_googletrend', [$this, 'update_default_country']);
+        add_action('wp_ajax_nopriv_update_default_country_codedeyo_googletrend', [$this, 'update_default_country']);
+    }
+
+    /**
+     * google_permission_callback
+     * @return bool
+     */
+    public function google_permission_callback()
+    {
+        //check if user is logged and has admin capabilities
+        return current_user_can('edit_posts');
     }
 
     /**
      * load_custom_wp_admin_style
+     * @return void
      */
     public function load_custom_wp_admin_style()
     {
@@ -41,7 +61,7 @@ class CodedeyoGoogleTrends
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('codedeyo-google-trends-nonce'),
             'plugin_dir_url' => plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE),
-            'frontend_css_url' => plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.css'
+            'default_country' => get_option('codedeyo_google_trends_default_country', 'NG')
         ));
     }
 
@@ -99,19 +119,58 @@ class CodedeyoGoogleTrends
     function enqueue_block_editor_assets()
     {
 
+        /**
+         * Enqueue Gutenberg block assets for backend editor.
+         */
         wp_enqueue_script(
             $this->slug,
             plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/index.js',
             array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor')
         );
 
+        /**
+         * Enqueue Gutenberg block assets for backend editor.
+         */
         wp_enqueue_style(
             $this->slug . '-editor',
             plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/style-index.css',
             array('wp-edit-blocks')
         );
     }
+
+    /**
+     * update_default_country ajax
+     */
+    public function update_default_country()
+    {
+        //get country code
+        $country_code = sanitize_text_field($_POST['country']);
+        //nonce
+        $nonce = sanitize_text_field($_POST['nonce']);
+        //verify nonce
+        if (!wp_verify_nonce($nonce, 'codedeyo-google-trends-nonce')) {
+            return wp_send_json(
+                array(
+                    'success' => false,
+                    'message' => 'Nonce verification failed'
+                )
+            );
+        }
+        //update option
+        update_option('codedeyo_google_trends_default_country', $country_code);
+        //return response
+        return wp_send_json(
+            array(
+                'success' => true,
+                'message' => 'Default country updated successfully',
+                'data' => $country_code
+            )
+        );
+    }
 }
 
-//init
+/**
+ * Init Core Class
+ * @return void
+ */
 new CodedeyoGoogleTrends();

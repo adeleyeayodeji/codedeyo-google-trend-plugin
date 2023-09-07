@@ -5,8 +5,8 @@ Author URI: https://adeleyeayodeji.com/
 Author: Adeleye Ayodeji
 Requires at least: 3.6.0
 Requires PHP: 5.7
-Tested up to: 6.2
-Stable tag: 3.1
+Tested up to: 6.3
+Stable tag: 3.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,10 @@ none
 Yes
 
 == Changelog ==
+
+= 3.2.0 =
+Added Default Country Option
+Fix bugs
 
 = 3.1 =
 Updated Readme
