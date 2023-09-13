@@ -335,7 +335,7 @@ export default class GoogleTrends extends React.Component {
         nonce: codedeyoGoogleTrends.nonce
       },
       success: function (response) {
-        console.log("Default country saved to database:", response);
+        // console.log("Default country saved to database:", response);
       }
     });
   }

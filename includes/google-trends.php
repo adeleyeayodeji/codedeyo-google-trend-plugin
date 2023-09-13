@@ -55,7 +55,7 @@ class CodedeyoGoogleTrends
         wp_enqueue_script('google-trends-js', 'https://ssl.gstatic.com/trends_nrtr/2431_RC04/embed_loader.js', [], null, true);
         //load chart js
         wp_enqueue_script('google-trends-js-chart', 'https://ssl.gstatic.com/trends_nrtr/3349_RC01/embed_loader.js', [], null, true);
-        wp_enqueue_script('google-trends-js-2', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.js', array('wp-element'), CODEDEYO_TRENDS_PLGUN_VERSION);
+        wp_enqueue_script('google-trends-js-2', plugin_dir_url(CODEDEYO_TRENDS_PLGUN_FILE) . 'build/frontend.js', array('wp-element', 'wp-components'), CODEDEYO_TRENDS_PLGUN_VERSION);
         //localize script
         wp_localize_script('google-trends-js-2', 'codedeyoGoogleTrends', array(
             'ajax_url' => admin_url('admin-ajax.php'),
