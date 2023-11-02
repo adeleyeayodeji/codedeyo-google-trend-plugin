@@ -9,7 +9,6 @@ registerBlockType("codedeyogoogletrends/meta-block", {
   title: "Google Trends Widget",
   edit: ({ setAttributes, attributes }) => {
     const blockProps = useBlockProps();
-    console.log("I dey here");
     return (
       <div {...blockProps}>
         <p>This widget is not available yet, please check back later</p>
