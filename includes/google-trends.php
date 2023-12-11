@@ -75,7 +75,7 @@ class CodedeyoGoogleTrends
             $this->slug,
             'Google Trends for WP',
             [$this, 'metabox_render'],
-            null,
+            'post',
             'normal',
             'high',
             array(
